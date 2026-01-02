@@ -4,6 +4,14 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+@layer components {
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border
+           bg-white text-gray-800 placeholder-gray-700
+           focus:ring-2 focus:ring-indigo-400
+           outline-none transition;
+  }
+}
 
 @theme inline {
   --color-background: var(--background);
