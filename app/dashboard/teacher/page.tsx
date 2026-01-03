@@ -484,8 +484,10 @@ export default function TeacherDashboard() {
                       key={submission.id}
                       className="border-b border-gray-100 hover:bg-gray-50"
                     >
-                      <td className="py-3 px-4">{submission.student.name}</td>
-                      <td className="py-3 px-4">
+                      <td className="py-3 px-4 text-gray-600">
+                        {submission.student.name}
+                      </td>
+                      <td className="py-3 px-4 text-gray-600">
                         <div className="font-semibold">
                           {submission.assignment.title}
                         </div>
@@ -493,7 +495,7 @@ export default function TeacherDashboard() {
                           {submission.assignment.class.name}
                         </div>
                       </td>
-                      <td className="py-3 px-4">
+                      <td className="py-3 px-4 text-gray-600">
                         <span
                           className={`px-2 py-1 rounded text-sm ${
                             submission.status === "graded"
@@ -510,7 +512,7 @@ export default function TeacherDashboard() {
                             : submission.status}
                         </span>
                       </td>
-                      <td className="py-3 px-4 font-semibold">
+                      <td className="py-3 px-4 font-semibold text-gray-600">
                         {submission.teacher_score !== null ? (
                           <div>
                             <div className="text-purple-600">
@@ -529,7 +531,7 @@ export default function TeacherDashboard() {
                           submission.ai_score || "—"
                         )}
                       </td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
+                      <td className="py-3 px-4 text-gray-600">
                         {new Date(submission.created_at).toLocaleString()}
                       </td>
                       <td className="py-3 px-4">

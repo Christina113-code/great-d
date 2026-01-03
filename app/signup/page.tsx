@@ -55,6 +55,7 @@ export default function SignupPage() {
             focus:ring-2 focus:ring-indigo-400 outline-none"
             placeholder="Name"
             onChange={(e) => setName(e.target.value)}
+            required
           />
 
           <input
@@ -63,6 +64,7 @@ export default function SignupPage() {
              focus:ring-2 focus:ring-indigo-400 outline-none"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
 
           <input
@@ -72,6 +74,7 @@ export default function SignupPage() {
              focus:ring-2 focus:ring-indigo-400 outline-none"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
 
           <div className="flex gap-2">

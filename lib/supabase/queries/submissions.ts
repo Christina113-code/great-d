@@ -31,7 +31,7 @@ export async function getSubmissionsForAssignment(assignmentId: string) {
       *,
       student:profiles!submissions_student_id_fkey (
         id,
-        full_name
+        name
       )
     `
     )

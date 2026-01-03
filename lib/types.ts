@@ -39,7 +39,7 @@ export type SubmissionAttempt = {
 export type Submission = {
   id: string;
   assignment_id: string;
-  user_id: string;
+  student_id: string;
   file_path: string | null;
   attempt_number: number;
   status: string;
@@ -47,9 +47,24 @@ export type Submission = {
   ai_feedback: string | null;
   teacher_score: number | null;
   teacher_feedback: string | null;
-  created_at: string;
-  graded_at: string | null;
+  graded_at: string | null; // ISO date string
+  created_at: string; // ISO date string
+
+  // Nested objects
+  student: {
+    id: string;
+    name: string;
+  };
+  assignment: {
+    id: string;
+    title: string;
+    class: {
+      id: string;
+      name: string;
+    };
+  };
 };
+
 export type User = {
   id: string;
   name: string;
