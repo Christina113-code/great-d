@@ -54,6 +54,7 @@ export function getSubmissionImageUrl(filePath: string): string {
   const {
     data: { publicUrl },
   } = supabase.storage.from("submissions").getPublicUrl(filePath);
+  console.log("Public URL:", publicUrl);
   return publicUrl;
 }
 

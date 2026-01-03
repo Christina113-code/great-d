@@ -42,6 +42,7 @@ export default function TeacherDashboard() {
   const [newAssignmentTitle, setNewAssignmentTitle] = useState("");
   const [newAssignmentDescription, setNewAssignmentDescription] = useState("");
   const [newAssignmentDueDate, setNewAssignmentDueDate] = useState("");
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   useEffect(() => {
     loadDashboard();
@@ -256,6 +257,7 @@ export default function TeacherDashboard() {
   }
 
   async function handleOpenReview(submission: Submission) {
+    console.log("Submission:", submission);
     setSelectedSubmission(submission);
     setTeacherScore(submission.teacher_score?.toString() || "");
     setTeacherComment(submission.teacher_feedback || "");
@@ -752,11 +754,34 @@ export default function TeacherDashboard() {
                   <p className="text-sm font-semibold text-gray-700 mb-2">
                     Submission Image:
                   </p>
+
+                  {/* Fixed-height preview container */}
+                  <div className="relative h-64 w-full overflow-hidden rounded-lg border border-gray-200 bg-gray-100">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={getSubmissionImageUrl(selectedSubmission.file_path)}
+                      alt="Student submission"
+                      className="h-full w-full cursor-zoom-in object-contain"
+                      onClick={() => setIsImageOpen(true)}
+                    />
+
+                    <div className="absolute bottom-2 right-2 rounded bg-black/60 px-2 py-1 text-xs text-white">
+                      Click to expand
+                    </div>
+                  </div>
+                </div>
+              )}
+              {/* Image Modal */}
+              {isImageOpen && selectedSubmission?.file_path && (
+                <div
+                  className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-4"
+                  onClick={() => setIsImageOpen(false)}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={getSubmissionImageUrl(selectedSubmission.file_path)}
-                    alt="Student submission"
-                    className="max-w-full border-2 border-gray-200 rounded-lg"
+                    alt="Expanded submission"
+                    className="max-h-[90vh] max-w-[90vw] object-contain"
                   />
                 </div>
               )}
