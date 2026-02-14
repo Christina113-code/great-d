@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Great’d 🧠✏️
 
-## Getting Started
+**AI-Powered Math Grading Platform**
 
-First, run the development server:
+Great’d is an AI-powered math grading platform that allows students to upload their work and receive instant grading, feedback, and scores using AI.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The platform is designed to help students learn faster, understand mistakes, and make math practice more engaging. Gamified features like XP, streaks, and achievements are currently in development.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project is actively being built.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Vision
 
-## Learn More
+Traditional homework grading is slow or unavailable. Great’d solves this by providing:
 
-To learn more about Next.js, take a look at the following resources:
+- Instant AI grading
+- Immediate feedback
+- Progress tracking
+- Gamified learning experience
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Great’d aims to make math practice faster, smarter, and more motivating.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ✨ Current Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Student Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Upload math assignment images
+- AI-generated scores
+- Submission tracking
+- Dashboard to view past work
+
+### AI Pipeline
+
+- Image upload and storage
+- OCR processing
+- AI grading using OpenAI
+- Feedback and score storage
+
+### Platform Features
+
+- Authentication
+- Assignment submissions
+- Database integration
+
+---
+
+## 🕹️ Planned Features
+
+### Gamification
+
+- XP system
+- Levels
+- Achievement badges
+- Streak tracking
+- Leaderboards
+
+### AI Improvements
+
+- Step-by-step grading
+- Mistake detection
+- Personalized feedback
+- Learning suggestions
+
+### Teacher Features
+
+- Class creation
+- Assignment creation
+- Student analytics
+- Bulk grading
+
+---
+
+## 🏗️ Tech Stack
+
+**Frontend**
+
+- Next.js
+- React
+- TypeScript
+
+**Backend**
+
+- Node.js
+- Express
+
+**Database & Storage**
+
+- Supabase
+- PostgreSQL
+- Supabase Storage
+
+**AI & OCR**
+
+- OpenAI API
+- Tesseract OCR
+
+---
+
+## 📂 Project Structure
+
