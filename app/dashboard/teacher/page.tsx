@@ -46,6 +46,7 @@ export default function TeacherDashboard() {
 
   useEffect(() => {
     loadDashboard();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -104,7 +105,6 @@ export default function TeacherDashboard() {
         })
       );
       setClasses(classesWithMembers);
-
       // 3. Load assignments for all classes
       const { data: assignmentsData, error: assignmentsError } =
         await getTeacherAssignments(currentUser.id);
@@ -123,7 +123,7 @@ export default function TeacherDashboard() {
           if (subsError) {
             console.error("Error loading submissions:", subsError);
           }
-          console.log("Submissions data:", submissionsData);
+
           const submissionsList = submissionsData || [];
 
           // Add assignment with class info and submission count
@@ -157,7 +157,7 @@ export default function TeacherDashboard() {
           );
         }
       }
-
+      console.log("All Assignments:", allAssignments);
       setAssignments(allAssignments);
       setSubmissions(allSubmissions);
     } catch (error) {

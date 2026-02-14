@@ -1,13 +1,18 @@
 export type Assignment = {
   id: string;
-  class_id: string;
-  teacher_id: string;
   title: string;
-  description: string | null;
-  due_date: string;
+  description: string;
+  due_date: string; // ISO date
   rubric: string | null;
   answer_key: string | null;
-  created_at: string;
+  created_at: string; // ISO date
+  teacher_id: string;
+  class_id: string;
+  class: {
+    id: string;
+    name: string;
+  };
+  submissions: Submission[]; // reuse the Submission type you already defined
 };
 
 export type ClassMember = {
@@ -16,25 +21,12 @@ export type ClassMember = {
 };
 export type Class = {
   id: string;
-  teacher_id: string;
   name: string;
+  teacher_id: string;
   class_code: string;
+  class_members: ClassMember[]; // array of user IDs
   created_at: string;
-};
-
-export type SubmissionAttempt = {
-  id: string;
-  assignment_id: string;
-  user_id: string;
-  file_path: string | null;
-  attempt_number: number;
-  status: string;
-  ai_score: number | null;
-  ai_feedback: string | null;
-  teacher_score: number | null;
-  teacher_feedback: string | null;
-  created_at: string;
-  graded_at: string | null;
+  answer_key: string | null;
 };
 export type Submission = {
   id: string;

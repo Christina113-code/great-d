@@ -92,7 +92,7 @@ export async function getNextAttemptNumber(
     .from("submissions")
     .select("attempt_number")
     .eq("assignment_id", assignmentId)
-    .eq("user_id", studentId)
+    .eq("student_id", studentId)
     .order("attempt_number", { ascending: false })
     .limit(1)
     .single();

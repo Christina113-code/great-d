@@ -1,18 +1,7 @@
 import { supabase } from "./client";
 
 /**
- * Upload submission image to Supabase Storage
- *
- * Structure: submissions/{assignmentId}/{studentId}/{timestamp}.{ext}
- * This allows multiple attempts per student per assignment
- *
- * RLS: Should be enforced at storage bucket level:
- * - Students can upload to their own folder
- * - Teachers can read from folders of their students
- */
-/**
  * Upload submission image and return file_path for database storage
- * Schema uses file_path (storage path), not image_url
  */
 export async function uploadSubmissionImage(
   file: File,
@@ -22,11 +11,21 @@ export async function uploadSubmissionImage(
   data: { file_path: string; publicUrl: string } | null;
   error: Error | null;
 }> {
+  console.log("📤 [uploadSubmissionImage] start");
+  console.log("📄 File:", {
+    name: file.name,
+    type: file.type,
+    size: file.size,
+  });
+  console.log("🆔 assignmentId:", assignmentId);
+  console.log("🆔 studentId:", studentId);
+
   const fileExt = file.name.split(".").pop() || "jpg";
   const timestamp = Date.now();
   const fileName = `${assignmentId}/${studentId}/${timestamp}.${fileExt}`;
 
-  // Upload to submissions bucket
+  console.log("🧾 Generated file path:", fileName);
+
   const { data, error } = await supabase.storage
     .from("submissions")
     .upload(fileName, file, {
@@ -36,13 +35,17 @@ export async function uploadSubmissionImage(
     });
 
   if (error) {
+    console.error("❌ Upload failed:", error);
     return { data: null, error: error as Error };
   }
 
-  // Get public URL for display (file_path is stored in DB, publicUrl is for display)
+  console.log("✅ Upload success:", data);
+
   const {
     data: { publicUrl },
   } = supabase.storage.from("submissions").getPublicUrl(data.path);
+
+  console.log("🌍 Public URL generated:", publicUrl);
 
   return { data: { file_path: data.path, publicUrl }, error: null };
 }
@@ -51,24 +54,38 @@ export async function uploadSubmissionImage(
  * Get public URL from file_path (for display)
  */
 export function getSubmissionImageUrl(filePath: string): string {
+  console.log("🖼️ [getSubmissionImageUrl] filePath:", filePath);
+
   const {
     data: { publicUrl },
   } = supabase.storage.from("submissions").getPublicUrl(filePath);
-  console.log("Public URL:", publicUrl);
+
+  console.log("🌍 Public URL:", publicUrl);
+
   return publicUrl;
 }
 
 /**
- * Get signed URL for viewing submission image (for private buckets)
- * Use this for private buckets or when you need time-limited access
+ * Get signed URL for viewing submission image (private buckets)
  */
 export async function getSubmissionSignedUrl(
   filePath: string,
   expiresIn: number = 3600
 ): Promise<string | null> {
-  const { data } = await supabase.storage
+  console.log("🔐 [getSubmissionSignedUrl] start");
+  console.log("🖼️ filePath:", filePath);
+  console.log("⏳ expiresIn:", expiresIn);
+
+  const { data, error } = await supabase.storage
     .from("submissions")
     .createSignedUrl(filePath, expiresIn);
+
+  if (error) {
+    console.error("❌ Failed to create signed URL:", error);
+    return null;
+  }
+
+  console.log("✅ Signed URL created:", data?.signedUrl);
 
   return data?.signedUrl || null;
 }
